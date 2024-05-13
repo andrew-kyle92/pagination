@@ -8,11 +8,11 @@ Create a dictionary object, within your `settings.py` file, called `PAGINATION` 
     PAGINATION = {
         'amount': 10,  # number shown per page
         'data': None,  # a raw dictionary of the data to be paginated
-        'data-category': None,  # this is optional but helps with knowing which  category of data is being used
+        'data_category': None,  # this is optional but helps with knowing which  category of data is being used
         'pages': None,  # the amount of pages created from the dataset queried and amount of pages shown per page
     }
 ```
-When creating a view that will show paginated data, you want to add the pagination pagination data to the session (`request.session[PAGINATION]`). In pagination.js, there are fetch calls that receive and update the pagination session data.
+When creating a view that will show paginated data, you want to add the pagination data to the session (`request.session[PAGINATION]`). In pagination.js, there are fetch calls that receive and update the pagination session data.
 
 You also need to create serializers.py file that will contain serialized classes for each model. A suggested library to use is `djangorestframework`
 
@@ -47,7 +47,7 @@ def index(request):
     # now add the serialized data to the session
     pagination = settings.PAGINATION
     pagination['data'] = serialized_data
-    pagination['data-category'] = 'Songs'
+    pagination['data_category'] = 'Songs'
     request.session['PAGINATION] = pagination
 
     return render(request, template, context)

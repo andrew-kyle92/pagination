@@ -19,7 +19,7 @@ const csrftoken = getCookie('csrftoken');
 // Pagination
 // ##### receiving data from the session #####
 const receiveDataFromSession = async () => {
-    let url = document.URL.includes("ipa") ? '/ipa/receive-data-from-session/' : '/receive-data-from-session/';
+    let url = '/receive-data-from-session/';
 
     return await fetch(url, {
         method: "GET",
@@ -36,7 +36,7 @@ const receiveDataFromSession = async () => {
 }
 
 const updatePageConfig = async (params) => {
-    let url = document.URL.includes("ipa") ? "/ipa/update-page-config/" : "/update-page-config/";
+    let url = "/update-page-config/";
     return await fetch(url, {
         method: "PUT",
         credentials: "same-origin",
@@ -53,7 +53,7 @@ const updatePageConfig = async (params) => {
 }
 
 const fetchApplyFilters = async (filterData) => {
-    let url = document.URL.includes("ipa") ? '/ipa/apply-filters/': '/apply-filters/';
+    let url = '/apply-filters/';
     return await fetch(url, {
         method: "PUT",
         credentials: "same-origin",
@@ -197,11 +197,6 @@ function setData(config){
     let childCount = tbody.childElementCount;
     let url = new URL(document.URL);
     let paramObjects = new URLSearchParams(url.search);
-    // for(let i = 0; i < paramsList.length; i++){
-    //     let objData = paramsList[i].split("=");
-    //     paramObjects[objData[0]] = parseInt(objData[1]);
-    // }
-    // let paramKeys = Object.keys(paramObjects);
     let pagination = paramObjects.has("page") ? parseInt(paramObjects.get("page")) : 1;
     let pageLinks = document.getElementsByClassName("paginated-link");
     // adding and removing the class "current-link" from the page links
